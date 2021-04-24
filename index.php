@@ -7,9 +7,9 @@ $arrAllRecipes = array($corbaOdKoprive, $corbaOdKarfiola, $corbaOdMesa, $potazOd
 
 $enteredIngredient = "";
 $err = "";
-$ingredientsDoNOTExitInrecipe = array();
+$ingredientsDoNOTExistInrecipe = array();
 $recipesAvailable = "";
-$nonExitingIngredients = "";
+$nonExistingIngredients = "";
 $recipesWithSomeIngredients = "";
 
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 array_push($ingredientsExistInrecipe, $ingredientsArr[$a]); 
             }
             if(!str_contains($strAllrecipes, $ingredientsArr[$a])) {
-                array_push($ingredientsDoNOTExitInrecipe, $ingredientsArr[$a]);
+                array_push($ingredientsDoNOTExistInrecipe, $ingredientsArr[$a]);
             }
         }
         
@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
         }
-        if(!empty($ingredientsDoNOTExitInrecipe)) {
-            $nonExitingIngredients = "<h3>Navedeni sastojci se ne nalaze ni u jednom receptu: " . "<span style=\" color: gray; \">" . implode(", " ,$ingredientsDoNOTExitInrecipe) . "</span></h3>";
+        if(!empty($ingredientsDoNOTExistInrecipe)) {
+            $nonExistingIngredients = "<h3>Navedeni sastojci se ne nalaze ni u jednom receptu: " . "<span style=\" color: gray; \">" . implode(", " ,$ingredientsDoNOTExistInrecipe) . "</span></h3>";
         } 
         
         
@@ -120,12 +120,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<h3>Uneti sastojci su: " . "<i style=\" color: gray; \">". $enteredIngredient . "</i><br></h3>";
 
             }
-            echo $nonExitingIngredients . "<br>";
-            if(!empty($recipesAvailable) && !empty($ingredientsDoNOTExitInrecipe)) {
+            echo $nonExistingIngredients . "<br>";
+            if(!empty($recipesAvailable) && !empty($ingredientsDoNOTExistInrecipe)) {
             echo "<h3>Dostupni recepti koji sadrze sve navedene sastojke osim sastojaka koji nisu ni u jednom receptu: <br> </h3>" . $recipesAvailable;
             }
 
-            if(!empty($recipesAvailable) && empty($ingredientsDoNOTExitInrecipe)) {
+            if(!empty($recipesAvailable) && empty($ingredientsDoNOTExistInrecipe)) {
                 echo "<h2>Dostupni recepti koji sadrze sve navedene sastojke u ispod izlistanim receptima: <br> </h2>" . $recipesAvailable;
                 }
 
